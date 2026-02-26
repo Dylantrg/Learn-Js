@@ -43,13 +43,13 @@ async function loadParallel() {
 loadSequential().then(() => {
   return loadParallel();
 });
-async function loadParralelSafe() {
+async function loadParallelSafe() {
   console.log("Parallel start");
   const user = fakeApi("user", 500);
   const noti = fakeApi("notification", 300, true);
   const message = fakeApi("message", 200);
   try {
-    const [userData, notiData, messData] = Promise.all([user, noti, mess]);
+    const [userData, notiData, messData] = await Promise.all([user, noti, message]);
     console.log("User", userData);
     console.log("Notification", notiData);
     console.log("Message", messData);
